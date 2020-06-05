@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>658</width>
-    <height>396</height>
+    <height>452</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,7 +40,7 @@
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>320</y>
+     <y>390</y>
      <width>131</width>
      <height>25</height>
     </rect>
@@ -52,7 +52,7 @@
   <widget class="QLabel" name="name_label">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>50</x>
      <y>140</y>
      <width>91</width>
      <height>31</height>
@@ -74,7 +74,7 @@
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>320</y>
+     <y>390</y>
      <width>111</width>
      <height>25</height>
     </rect>
@@ -86,30 +86,33 @@
   <widget class="QLineEdit" name="name_lineEdit">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>200</x>
      <y>140</y>
-     <width>261</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-  </widget>
-  <widget class="QLabel" name="times_needed_label">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>230</y>
-     <width>221</width>
+     <width>401</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>18</pointsize>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="times_needed_label">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>280</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
     </font>
    </property>
    <property name="text">
@@ -119,15 +122,51 @@
   <widget class="QSpinBox" name="times_needed_spinbox">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>230</y>
-     <width>101</width>
+     <x>460</x>
+     <y>280</y>
+     <width>141</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>18</pointsize>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="path_label">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>210</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Path:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="path_edit">
+   <property name="geometry">
+    <rect>
+     <x>202</x>
+     <y>210</y>
+     <width>401</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
     </font>
    </property>
    <property name="alignment">

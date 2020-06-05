@@ -66,7 +66,7 @@ DIRECTORY = ["Bat", "Tat", "SangHon", "MoDi", "ToiHon",
              "Tam", "Tang_Vitri"]
 
 # INSERT YOUR PATH HERE
-PATH = "/home/hieunguyenminh/MyProjects/Command_Data"
+PATH = ""
 NAME = ""
 CUR_COMMAND = 0
 CUR_DIRECTORY = 0
