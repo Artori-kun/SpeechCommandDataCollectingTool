@@ -4,11 +4,9 @@ import RecToolUI
 import RecordTool as rec
 import _thread
 
-FILE_PATH = rec.PATH + "/Names.txt"
+FILE_PATH = ""
 count = 1
-with open(FILE_PATH, 'r') as f:
-    for line in f:
-        count += 1
+
 
 class MyForm(QDialog):
     def __init__(self):
@@ -20,8 +18,14 @@ class MyForm(QDialog):
         self.show()
 
     def start_record(self):
-        global count
-        rec.PATH = self.ui.path_edit.text()
+        global count, FILE_PATH
+        path = self.ui.path_edit.text()
+        if path != rec.PATH:
+            rec.PATH = path
+            FILE_PATH = rec.PATH + "/Names.txt"
+            with open(FILE_PATH, 'r') as f:
+                for line in f:
+                    count += 1
 
         namefile = open(FILE_PATH, "a")
         name = self.ui.name_lineEdit.text()

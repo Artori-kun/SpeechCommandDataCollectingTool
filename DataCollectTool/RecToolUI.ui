@@ -94,7 +94,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <pointsize>17</pointsize>
     </font>
    </property>
    <property name="alignment">
@@ -166,7 +166,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <pointsize>17</pointsize>
     </font>
    </property>
    <property name="alignment">
