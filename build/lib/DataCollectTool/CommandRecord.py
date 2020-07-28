@@ -10,7 +10,7 @@ from sys import byteorder
 import matplotlib.pyplot as plt
 import numpy as np
 import pyaudio
-import CountingDialog
+import DataCollectTool.CountingDialog as CountingDialog
 from PyQt5.QtWidgets import QDialog
 
 

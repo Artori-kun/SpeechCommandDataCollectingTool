@@ -1,5 +1,5 @@
 import sys
-import run
+import DataCollectTool.run as run
 from PyQt5.QtWidgets import QDialog, QApplication
 
 

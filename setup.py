@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="data_collect_tool",
-    version="1.0.1",
+    version="1.0.3",
     entry_points={
       'gui_scripts': [
           'data-collect-tool = DataCollectTool.__main__:main'
