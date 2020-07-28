@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QDialog, QApplication
 import RecToolUI
-import RecordTool as rec
+import CommandRecord as rec
 import _thread
 
 FILE_PATH = ""

@@ -2,6 +2,7 @@ import os
 import os.path
 import struct
 import sys
+import time
 import wave
 from array import array
 from sys import byteorder
@@ -10,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pyaudio
 import CountingDialog
-from PyQt5.QtWidgets import QDialog, QApplication
+from PyQt5.QtWidgets import QDialog
 
 
 # Dialog
@@ -36,13 +37,15 @@ class CountingForm(QDialog):
 
 # number of audio frame will be processed and displayed at a time
 
+p = pyaudio.PyAudio()
+
 CHUNK = 1024 * 3
 
-THRESHOLD = 350
+THRESHOLD = 300
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 # sample per second
-RATE = 44100
+RATE = int(p.get_device_info_by_index(1)["defaultSampleRate"])
 
 COMMAND = ["Bật", "Tắt", "Sáng hơn", "Mờ đi",
            "Tối hơn", "Chuyển", "Lên", "Xuống", "Kéo lên",
@@ -137,14 +140,15 @@ def record():
     d.show()
 
     global is_recording, CUR_COMMAND, TIMES_RECORDED, CUR_DIRECTORY, end, count
-    p = pyaudio.PyAudio()
+    # p = pyaudio.PyAudio()
     stream = p.open(
         format=FORMAT,
         channels=CHANNELS,
         rate=RATE,
         input=True,
         output=True,
-        frames_per_buffer=CHUNK
+        frames_per_buffer=CHUNK,
+        output_device_index=0
     )
 
     num_silent = 0
@@ -170,10 +174,10 @@ def record():
         if end:
             stream.stop_stream()
             stream.close()
-            p.terminate()
+            # p.terminate()
             plt.close(fig)
             break
-        record_data = array('h', stream.read(CHUNK))
+        record_data = array('h', stream.read(CHUNK, exception_on_overflow=False))
         if byteorder == 'big':
             record_data.byteswap()
         # data = struct.unpack(str(CHUNK) + 'h', stream.read(CHUNK))
@@ -189,25 +193,37 @@ def record():
             TIMES_RECORDED = 0
             stream.stop_stream()
             stream.close()
-            p.terminate()
+            # p.terminate()
             plt.close(fig)
             break
 
         if silent and is_recording:
             num_silent += 1
             r.extend(record_data)
-            if num_silent > 20:
+            if num_silent > 10:
                 is_recording = False
                 num_silent = 0
                 # print('Xong')
                 # d.update_statusLabel("Đang lưu")
 
                 sample_width = p.get_sample_size(FORMAT)
-                r = normalize(r)
-                r = trim(r)
-                r = add_silence(r, 0.2)
-                record_to_file(r, sample_width, NAME)
 
+                # normalize_start = time.clock()
+                r = normalize(r)
+                # normalize_end = time.clock()
+                # print("Normalize: ", normalize_end - normalize_start);
+                #
+                # trim_start = time.clock()
+                r = trim(r)
+                # trim_end = time.clock()
+                # print("Trim: ", trim_end - trim_start)
+                #
+                r = add_silence(r, 0.2)
+                #
+                # write_start = time.clock()
+                record_to_file(r, sample_width, NAME)
+                # write_end = time.clock()
+                # print("Write: ", write_end - write_start)
                 # TIMES_RECORDED = TIMES_RECORDED + 1
                 CUR_DIRECTORY = CUR_DIRECTORY + 1
                 CUR_COMMAND = CUR_COMMAND + 1
@@ -283,7 +299,7 @@ def record():
 def record_to_file(data, sample_width, recorder_name):
     # sample_width, data = record()
 
-    # data = struct.pack('<' + ('h' * len(data)), *data)
+    _data = struct.pack('<' + ('h' * len(data)), *data)
     file_num = len([
         name for name in os.listdir(PATH + '/' + DIRECTORY[CUR_DIRECTORY])
         if (name.endswith('.wav') and recorder_name in name)
@@ -294,10 +310,13 @@ def record_to_file(data, sample_width, recorder_name):
     wf.setsampwidth(sample_width)
     wf.setframerate(RATE)
 
-    for i in data:
-        i = struct.pack('<h', i)
-        wf.writeframes(i)
-
+    # write_start = time.clock()
+    # for i in data:
+    #     i = struct.pack('<h', i)
+    #     wf.writeframes(i)
+    wf.writeframes(_data)
+    # write_end = time.clock()
+    # print("Write Loop: ", write_end - write_start)
     wf.close()
 
 
