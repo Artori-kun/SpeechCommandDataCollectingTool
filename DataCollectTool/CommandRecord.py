@@ -320,7 +320,7 @@ def record_to_file(data, sample_width, recorder_name):
     wf.close()
 
 
-if __name__ == '__main__':
-    print("Say something")
-    record()
-    print("Done")
+# if __name__ == '__main__':
+#     print("Say something")
+#     record()
+#     print("Done")

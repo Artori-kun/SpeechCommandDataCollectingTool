@@ -58,8 +58,8 @@ class MyForm(QDialog):
         self.ui.cur_remain_label.setText(str(15 - rec.TIMES_RECORDED))
 
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    w = MyForm()
-    w.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     app = QApplication(sys.argv)
+#     w = MyForm()
+#     w.show()
+#     sys.exit(app.exec_())

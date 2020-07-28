@@ -2,7 +2,12 @@ import setuptools
 
 setuptools.setup(
     name="data_collect_tool",
-    version="1.0.0",
+    version="1.0.1",
+    entry_points={
+      'gui_scripts': [
+          'data-collect-tool = DataCollectTool.__main__:main'
+      ]
+    },
     author="Nguyen Minh Hieu",
     author_email="nguyenminhhieu.it1.k52@gmail.com",
     description="Data Collect Tool",
