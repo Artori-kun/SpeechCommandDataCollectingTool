@@ -1,0 +1,13 @@
+README.md
+setup.py
+DataCollectTool/CommandRecord.py
+DataCollectTool/CountingDialog.py
+DataCollectTool/RecToolUI.py
+DataCollectTool/RunUI.py
+DataCollectTool/SentencesRecord.py
+DataCollectTool/__init__.py
+DataCollectTool/connector.py
+data_collect_tool.egg-info/PKG-INFO
+data_collect_tool.egg-info/SOURCES.txt
+data_collect_tool.egg-info/dependency_links.txt
+data_collect_tool.egg-info/top_level.txt
